@@ -1,0 +1,483 @@
+/* 
+    Created on : 30 Nov, 2015, 6:26:45 AM
+    Author     : Prateek Kedia
+*/
+
+* {
+    font-size: 1em;
+    font-family: 'Varela Round', sans-serif;
+}
+
+body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    box-sizing: border-box;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    text-align: center;
+    background: rgba(250,250,250,0.8);
+    font-size: 0.9em;
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+}
+
+#container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: table;
+}
+
+#imagesTable {
+    position: fixed;
+    background-color: whitesmoke;
+    height: 100%;
+    width: 20%;
+    max-width: 200px;
+    box-sizing: border-box;
+    overflow: auto;
+    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.5);
+}
+
+.imageCell {
+    position: relative;
+    max-height: 200px;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.imageCell img {
+    max-height: inherit;
+    max-width: inherit;
+    position: relative;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,.5);
+}
+@media screen and (min-width: 750px) {
+    .grow:hover {
+        transition: all .1s ease-in-out;
+        transform: scale(1.1);
+    }
+}
+
+.imageCell .grow .selected {
+    width: 100%;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+.imageMainView {
+    position: fixed;
+    height: 100%;
+    width: 80%;
+    min-width: calc(100% - 200px);
+    right: 0%;
+    box-sizing: border-box;
+    color: #92AAB0;
+    background-color: rgba(66, 79, 90, 1);
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+    margin-bottom: 10px;
+    font-size: 200%;
+}
+
+#imageMainView img, span{
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 0.8em;
+}
+
+.filterButtonsContainer {
+    width: 90%;
+    top: 100%;
+    left: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    position: absolute;
+    transform: translate(-50%,-100%);
+}
+
+.filterButton {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: rgba(255,255,255,0.8);
+    color: black;
+    font-size: 0.5em;
+    padding: 5px;
+    margin: 2%;
+    text-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+    cursor: pointer;
+    border-radius: 5px;
+    transform: translate(0%,0%);
+    height: 30%;
+    overflow-wrap: break-word;
+}
+
+#imageMainView img {
+    max-width: 95%;
+    max-height: 95%;
+    box-shadow: 0px 0px 50px rgba(0,0,0,1);
+    box-sizing: border-box;
+    border: white 10px;
+    border-style: outset;
+}
+
+.progressBarContainer {
+    position: absolute;
+    height: calc(100% - 10px);
+    width: 54px;
+    top: 0px;
+    right: 0px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 4px;
+    float: right;
+    z-index: 100;
+    color: greenyellow;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.progressBar {
+    position: absolute;
+    background-color: greenyellow;
+    box-sizing: border-box;
+    width: 50px;
+    right: 2px;
+    height: 5%;
+}
+
+.uploadFailedMessage {
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+}
+
+.uploadFailedMessage * {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.selected {
+    background: rgba(66, 79, 90, 1);
+}
+
+.btnAddFiles {
+    background: #ededed;
+    background-image: -webkit-linear-gradient(top, #ededed, #dfdfdf);
+    background-image: -moz-linear-gradient(top, #ededed, #dfdfdf);
+    background-image: -ms-linear-gradient(top, #ededed, #dfdfdf);
+    background-image: -o-linear-gradient(top, #ededed, #dfdfdf);
+    background-image: linear-gradient(to bottom, #ededed, #dfdfdf);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: rgba(56,43,43,0.8);
+    font-size: 50px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    transform: translate(0%,-100%);
+    top: 100%;
+    width: inherit;
+    max-width: 200px;
+    position: relative;
+    border: lightgrey solid;
+    box-sizing: border-box;
+    z-index: 10;
+    cursor: pointer;
+    position: fixed;
+}
+
+.btnAddFiles:hover {
+    background: #dfdfdf;
+    background-image: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -moz-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -ms-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -o-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: linear-gradient(to bottom, #dfdfdf, #ededed);
+    text-decoration: none;
+}
+
+.btnAddFiles:active {
+    background: #dfdfdf;
+    background-image: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -moz-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -ms-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: -o-linear-gradient(top, #dfdfdf, #ededed);
+    background-image: linear-gradient(to bottom, #dfdfdf, #ededed);
+    text-decoration: none;
+}
+
+.btnAddFilesBodyDouble {
+    background: none;
+    opacity: 0;
+    position: relative;
+    transform: translate(0%,0%);
+    display: inline-block;
+    top: 0%;
+}
+
+@media screen and (max-width: 450px) {
+    * {
+        font-size: 1em;
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    body {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        margin-top: 0px;
+        margin-left: 0px;
+        box-sizing: border-box;
+    }
+
+    header {
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        text-align: center;
+        background: rgba(250,250,250,0.8);
+        font-size: 0.6em;
+        text-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+    }
+
+    #container {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        display: table;
+    }
+
+    #imagesTable {
+        position: fixed;
+        display: inline-block;
+        background-color: whitesmoke;
+        height: 100px;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        overflow: auto;
+        box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.5);
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .imageCell {
+        position: relative;
+        height: 100%;
+        max-width: 100px;
+        box-sizing: border-box;
+        padding: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .imageCell img {
+        max-height: 100%;
+        max-width: 100%;
+        position: relative;
+        top: 50%;
+        transform: translate(0%, -50%);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+        align-self: auto;
+    }
+
+    #imageMainView
+    {
+        position: fixed;
+        height: calc(100% - 100px);
+        width: 100%;
+        margin-top: 100px;
+        display: table-cell;
+        box-sizing: border-box;
+        color:#92AAB0;
+        background-color: rgba(66, 79, 90, 1);
+        text-align:center;
+        vertical-align:middle;
+        padding: 20px;
+        margin-bottom:10px;
+        font-size:200%;
+        margin-left: 0px;
+    }
+
+    #imageMainView img, span{
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .filterButtonsContainer {
+        width: 100%;
+        top: 100%;
+        left: 50%;
+        text-align: center;
+        box-sizing: border-box;
+        position: absolute;
+        transform: translate(-50%,-100%);
+    }
+
+    .filterButton {
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        box-sizing: border-box;
+        background-color: rgba(255,255,255,0.8);
+        color: black;
+        font-size: 0.4em;
+        padding: 5px;
+        margin: 0%;
+        text-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+        cursor: pointer;
+        border-radius: 0px;
+        transform: translate(0%,0%);
+        height: 40px;
+        width: 25%;
+        overflow-wrap: break-word;
+        border-style: dashed;
+        border-bottom: none;
+        border-top: none;
+        border-width: 1px;
+        border-color: rgba(0,0,0,.5);
+        vertical-align: middle;
+    }
+
+    #imageMainView img {
+        max-width: 95%;
+        max-height: 95%;
+        box-shadow: 0px 0px 50px rgba(0,0,0,1);
+        box-sizing: border-box;
+        border: white 10px;
+        border-style: outset;
+    }
+
+    .progressBarContainer {
+        position: absolute;
+        height: calc(100% - 20px);
+        width: 54px;
+        top: 0px;
+        right: 0px;
+        margin-right: 10px;
+        margin-top: 10px;
+        padding: 4px;
+        float: right;
+        z-index: 100;
+        color: greenyellow;
+        box-sizing: border-box;
+        background-color: rgba(0,0,0,0.5);
+        overflow: hidden;
+    }
+
+    .progressBar {
+        position: absolute;
+        background-color: greenyellow;
+        box-sizing: border-box;
+        width: 50px;
+        right: 2px;
+        height: 5%;
+    }
+
+    .uploadFailedMessage {
+        background: rgba(0,0,0,0.3);
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+    }
+
+    .uploadFailedMessage * {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .selected {
+        background: rgba(66, 79, 90, 1);
+    }
+
+    .btnAddFiles {
+        background: #ededed;
+        background-image: -webkit-linear-gradient(top, #ededed, #dfdfdf);
+        background-image: -moz-linear-gradient(top, #ededed, #dfdfdf);
+        background-image: -ms-linear-gradient(top, #ededed, #dfdfdf);
+        background-image: -o-linear-gradient(top, #ededed, #dfdfdf);
+        background-image: linear-gradient(to bottom, #ededed, #dfdfdf);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        color: rgba(56,43,43,0.8);
+        font-size: 50px;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+        text-align: center;
+        transform: translate(0%,0%);
+        right: 0%;
+        top: 0%;
+        height: 100px;
+        width: 100px;
+        position: fixed;
+        display: block;
+        border: lightgrey solid;
+        box-sizing: border-box;
+        z-index: 38;
+        cursor: pointer;
+        float: right;
+    }
+
+    .btnAddFiles:hover {
+        background: #dfdfdf;
+        background-image: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -moz-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -ms-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -o-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: linear-gradient(to bottom, #dfdfdf, #ededed);
+        text-decoration: none;
+    }
+
+    .btnAddFiles:active {
+        background: #dfdfdf;
+        background-image: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -moz-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -ms-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: -o-linear-gradient(top, #dfdfdf, #ededed);
+        background-image: linear-gradient(to bottom, #dfdfdf, #ededed);
+        text-decoration: none;
+    }
+
+    .btnAddFilesBodyDouble {
+        opacity: 0;
+        position: relative;
+        display: inline-block;
+        top: 0%;
+        border: solid black 3px;
+        float: none;
+        box-sizing: border-box;
+    }
+}
